@@ -1,0 +1,134 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: yii2basic
+-- ------------------------------------------------------
+-- Server version	5.0.51b-community-nt-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `for_log`
+--
+
+DROP TABLE IF EXISTS `for_log`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `for_log` (
+  `id_group` int(11) NOT NULL,
+  `login` varchar(45) default NULL,
+  `password` varchar(45) default NULL,
+  `qr_hash` varchar(256) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `for_log`
+--
+
+LOCK TABLES `for_log` WRITE;
+/*!40000 ALTER TABLE `for_log` DISABLE KEYS */;
+INSERT INTO `for_log` VALUES (13,'note','benoid','b59c67bf196a4758191e42f76670ceba'),(5,'net','not','934b535800b1cba8f96a5d72f72f1611');
+/*!40000 ALTER TABLE `for_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL auto_increment,
+  `groupname` varchar(45) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `last_upl` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FK_groups_1` (`users_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `groups`
+--
+
+LOCK TABLES `groups` WRITE;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` VALUES (3,'First',2,NULL),(2,'Second',1,NULL),(1,'First',1,'test.cvs'),(4,'Second',2,NULL),(5,'ISPPR.5',1,''),(6,'╨Я╤Б╨╕╤Е╨╛╨╗╨╛╨│╨╕╤П',1,'test.csv'),(8,'qwert',1,NULL),(9,'notabene',4,'test.csv'),(10,'SU35',1,NULL),(11,'Uidsof',4,'test.csv'),(12,'QWEYRE',4,''),(13,'RWQRA',4,''),(15,'asdfasdf',4,NULL),(14,'╤Д╤Л╨▓╨░╤Д╤Л╨▓╨░',4,'test.csv');
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rozklad`
+--
+
+DROP TABLE IF EXISTS `rozklad`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `rozklad` (
+  `id_group` int(11) NOT NULL,
+  `date` varchar(25) NOT NULL,
+  `time` varchar(25) NOT NULL,
+  `Lesson` varchar(256) NOT NULL,
+  `Auditory` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `rozklad`
+--
+
+LOCK TABLES `rozklad` WRITE;
+/*!40000 ALTER TABLE `rozklad` DISABLE KEYS */;
+INSERT INTO `rozklad` VALUES (1,'2014-12-25','12:00:00','qwr','532',1),(1,'2014-12-31','23:15:47','qrqwe','122',2),(2,'2014-12-23','23:16:09','qwrrqqew','1512',3),(3,'2014-12-25','23:29:35','qq','13',4),(1,'24.12.1422','15:42','Aprox','423',5),(13,'26.12.14','14:30','╨б╨╛╤Ж╨╕╨╛╨╗╨╛╨│╨╕╤П','503',7),(13,'24.12.14','15:01','╨Я╤Б╨╕╤Е╨╛╨╗╨╛╨│╨╕╤П','402',8),(13,'22.12.14','15:32','╨Ь╨░╤В╨╡╨╝╨░╤В╨╕╨║╨░','532',9),(13,'17.01.15','16:03','╨б╨╕╤Б╤В╨╡╨╝╨╜╤Л╨╣ ╨░╨╜╨░╨╗╨╕╨╖','508',10),(13,'20.01.15','16:34','╨б╨╛╤Ж╨╕╨╛╨╗╨╛╨│╨╕╤П','523',11),(13,'23.01.15','17:05','╨Я╤Б╨╕╤Е╨╛╨╗╨╛╨│╨╕╤П','537',12),(13,'26.01.15','17:36','╨Ь╨░╤В╨╡╨╝╨░╤В╨╕╨║╨░','552',13),(13,'29.01.15','18:07','╨б╨╕╤Б╤В╨╡╨╝╨╜╤Л╨╣ ╨░╨╜╨░╨╗╨╕╨╖','566',14);
+/*!40000 ALTER TABLE `rozklad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `users` (
+  `id` mediumint(9) NOT NULL auto_increment,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `salt` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'bycreed','05d191e17354ff20e5e9894af5741403','548a4632a0ba7'),(4,'nota','fffd7563c9b258c4b1e313470829a1df','548df51880f2e'),(10,'some','085a620c8c33ce2386ca2ad9fdd3f3db','54aff9161a8b1'),(11,'Solo','e7a4780ab8110bbe607fc94dda89ac86','54b165d2d54ba');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-01-11  0:58:14
